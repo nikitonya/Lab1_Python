@@ -58,29 +58,33 @@ for line in lines:
     temp = re.sub('_', '-', temp)
     temp = re.sub('\*', '', temp)
     temp = temp.replace(u'\xa0', u' ')
-    # print('temp', temp)
+
     tmp_split = temp.split(';')  # разделяем строку на подстроки для массива
     country_name = tmp_split[0]  # получаем название страны
+
+    # извлечение данных из оставшихся столбцов (статистика)
     col1_val = tmp_split[1]
     col2_val = tmp_split[2]
     col3_val = tmp_split[3]
     col4_val = tmp_split[4]
 
+    # Запись извлеченных данных в словарь
     result_dct[country_name] = [0, 0, 0, 0]
     result_dct[country_name][0] = col1_val
     result_dct[country_name][1] = col2_val
     result_dct[country_name][2] = col3_val
     result_dct[country_name][3] = col4_val
-    # print('result_dct', result_dct)
+
     counter += 1
 
 # Задание №5 - Сохранить содержимое таблицы в новый файл, где каждая новая строка таблицы
 # сохраняется с новой строки, а отдельные столбцы отделены символом ";".
 
-output = open('C:\\Users\\nikit\\Desktop\\Учёба\\5 семестр\\Прикладное программирование (Python)\\data.csv', 'w')
-writer = csv.writer(output, delimiter=";")
-writer.writerow(['', 'ЗАБОЛЕЛИ', 'УМЕРЛИ', 'ВЫЛЕЧИЛИСЬ', 'АКТИВНЫЕ СЛУЧАИ'])
-for key, v in result_dct.items():
+output = open('C:\\Users\\nikit\\Desktop\\Учёба\\5 семестр\\Прикладное программирование (Python)\\data.csv',
+              'w')  # открытие файла для записи
+writer = csv.writer(output, delimiter=";")  # красивое разделение в excel
+writer.writerow(['', 'ЗАБОЛЕЛИ', 'УМЕРЛИ', 'ВЫЛЕЧИЛИСЬ', 'АКТИВНЫЕ СЛУЧАИ'])  # строка для обозначения статистики
+for key, v in result_dct.items():  # записываем словарь в таблицу
     writer.writerow([key, v[0], v[1], v[2], v[3]])
 output.close()
 
