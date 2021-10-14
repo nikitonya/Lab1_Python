@@ -24,7 +24,7 @@ for root, dirs, files in os.walk(directory_to_extract_to):
 
 # Получаем значения MD5 хеша для файлов из списка и выводим полученные данные на экран
 for file in txt_files:
-    target_file_data = open(file, 'rb').read()
+    target_file_data = open(file, 'rb').read()sfdtyetrnr6tt6
     hash = hashlib.md5(target_file_data).hexdigest()
     print('name: ', os.path.basename(file), 'hash: ', hash)
 
