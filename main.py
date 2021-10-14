@@ -55,10 +55,10 @@ for line in lines:
     temp = re.sub(r';[;;]*;', ';', temp)
     temp = temp[1:-1]
     temp = re.sub('.*\s\s', '', temp)
-    temp = re.sub('_', '-1', temp)
+    temp = re.sub('_', '-', temp)
     temp = re.sub('\*', '', temp)
     temp = temp.replace(u'\xa0', u' ')
-
+    # print('temp', temp)
     tmp_split = temp.split(';')  # разделяем строку на подстроки для массива
     country_name = tmp_split[0]  # получаем название страны
     col1_val = tmp_split[1]
@@ -71,17 +71,17 @@ for line in lines:
     result_dct[country_name][1] = col2_val
     result_dct[country_name][2] = col3_val
     result_dct[country_name][3] = col4_val
-    print('result_dct', result_dct)
+    # print('result_dct', result_dct)
     counter += 1
 
 # Задание №5 - Сохранить содержимое таблицы в новый файл, где каждая новая строка таблицы
 # сохраняется с новой строки, а отдельные столбцы отделены символом ";".
 
-output = open('C:\\Users\\nikit\\Desktop\\Учёба\\5 семестр\\Прикладное программирование (Python)\\data.csv', 'w',
-              encoding='utf-16')
-writer = csv.writer(output)
+output = open('C:\\Users\\nikit\\Desktop\\Учёба\\5 семестр\\Прикладное программирование (Python)\\data.csv', 'w')
+writer = csv.writer(output, delimiter=";")
+writer.writerow(['', 'ЗАБОЛЕЛИ', 'УМЕРЛИ', 'ВЫЛЕЧИЛИСЬ', 'АКТИВНЫЕ СЛУЧАИ'])
 for key, v in result_dct.items():
-    writer.writerow([key, v])
+    writer.writerow([key, v[0], v[1], v[2], v[3]])
 output.close()
 
 # Задание №6 - Предоставить возможность пользователю при помощи метода input() получить информацию об отдельных элементах таблицы.
