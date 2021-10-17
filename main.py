@@ -57,7 +57,7 @@ for line in lines:
     temp = re.sub('.*\s\s', '', temp)
     temp = re.sub('_', '-', temp)
     temp = re.sub('\*', '', temp)
-    temp = temp.replace(u'\xa0', u' ')
+    temp = temp.replace(u'\xa0', u' ')# sub
 
     tmp_split = temp.split(';')  # разделяем строку на подстроки для массива
     country_name = tmp_split[0]  # получаем название страны
